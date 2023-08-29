@@ -28,10 +28,8 @@ function LoginPage() {
     const { mutateAsync, isLoading: isMutating, error } = useMutation(loginRequest,
         {
             onSuccess: async (data) => { 
-
                 if (data.status == 204) {
                     getUser().then((res) => {
-                        
                         setAuth(res.data)
                         localStorage.setItem("user", JSON.stringify(res.data));
                         notify(res.data.name)

@@ -9,13 +9,9 @@ export const loginRequest = async (user) => {
     .post("/login", user)
     .then((response) => {
       return response
-      /*       if (response.status === 204) {
-              const res =  axiosClient.get(`/api/user`);
-              return res;
-            } */
     })
     .catch(function (error) {
-      console.error(error);
+       return error
     });
 
   return loginResponse;

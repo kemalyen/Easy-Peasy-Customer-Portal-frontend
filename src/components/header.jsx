@@ -58,10 +58,14 @@ const Header = () => {
                                         </Link>
                                     </li>
                                 }
-                                <Link to='/profile' className="nav-link mx-2">
-                                    <i className="bi bi-person-square"></i>
-                                    <span className='mx-2'>Profile</span>
-                                </Link>
+                                {(auth?.roles?.includes('Manager') || auth?.roles?.includes('User') || auth?.roles?.includes('Admin')) &&
+                                    <li>
+                                        <Link to='/profile' className="nav-link mx-2">
+                                            <i className="bi bi-person-square"></i>
+                                            <span className='mx-2'>Profile</span>
+                                        </Link>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -73,7 +77,6 @@ const Header = () => {
                             {!auth.name &&
                                 <div>
                                     <Link to='/login' className="btn btn-light text-dark me-2">Login</Link>
-                                    <button type="button" className="btn btn-primary">Sign-up</button>
                                 </div>
                             }
 
