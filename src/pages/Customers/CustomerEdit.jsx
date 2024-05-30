@@ -36,10 +36,9 @@ function CustomerEdit() {
 
 
     return (
-        <div className="row">
-            <div className="mx-auto col-10 col-md-8 col-lg-6">
-                <h2>Update the customer</h2>
-
+        <div className="flex flex-col items-center h-screen">
+        <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+            <h2 className="text-2xl font-semibold mb-4">Update a customer</h2>
                 <CustomerForm defaultValues={customer} onFormSubmit={onFormSubmit} isLoading={isMutating} />
             </div>
         </div>

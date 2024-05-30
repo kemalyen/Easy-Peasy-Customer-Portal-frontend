@@ -3,16 +3,17 @@ import { getCustomersRequest } from "../api/customers";
 import { Link, useSearchParams } from 'react-router-dom';
 import Pagination from "../shared/Pagination";
 
-import {useDocumentTitle} from '../libs/setDocumentTitle'
+import { useDocumentTitle } from '../libs/setDocumentTitle'
 import useAuth from "../hooks/useAuth";
 import Dashboard from "./Customers/Dashboard";
+import { FaPencilAlt, FaListUl } from "react-icons/fa";
 
 function CustomersList() {
 
   const { auth } = useAuth();
 
 
-  if (!auth.roles.includes('Admin')){
+  if (!auth.roles.includes('Admin')) {
     return <Dashboard />
   }
 
@@ -28,7 +29,7 @@ function CustomersList() {
   if (isLoading) return <div>Loading...</div>;
 
   if (error) return <div>Error: {error.message} </div>;
- 
+
   if (customers?.data?.length === 0)
     return (
       <div className="h-[calc(100vh-150px)] flex items-center justify-center">
@@ -41,47 +42,48 @@ function CustomersList() {
 
   return (
     <>
-      <h3>Customer List</h3>
-      <div className="table-responsive">
-        <table className="table table-striped table-bordered">
-          <thead>
-            <tr className="table-primary">
-              <th>ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Status</th>
-              <th>Balance</th>
-              <th>Created At</th>
-              <th>Users</th>
-              <th></th>
+
+ 
+      <div className="relative overflow-x-auto">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">ID</th>
+              <th scope="col" className="px-6 py-3">Name</th>
+              <th scope="col" className="px-6 py-3">Email</th>
+              <th scope="col" className="px-6 py-3">Status</th>
+              <th scope="col" className="px-6 py-3">Balance</th>
+              <th scope="col" className="px-6 py-3">Created At</th>
+              <th scope="col" className="px-6 py-3">Users</th>
+              <th scope="col" className="px-6 py-3"></th>
             </tr>
           </thead>
           <tbody>
             {customers.data.map(({ id, name, email, status, balance, created_at }) => {
               return (
-                <tr key={id}>
-                  <td>{id}</td>
-                  <td>{name}</td>
-                  <td>{email}</td>
-                  <td>{status}</td>
-                  <td>{balance}</td>
-                  <td>{created_at}</td>
-                  <td>
+                <tr key={id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <td className="px-6 py-4">{id}</td>
+                  <td className="px-6 py-4">{name}</td>
+                  <td className="px-6 py-4">{email}</td>
+                  <td className="px-6 py-4">{status}</td>
+                  <td className="px-6 py-4">{balance}</td>
+                  <td className="px-6 py-4">{created_at}</td>
+                  <td className="px-6 py-4">
                     <Link
                       tabIndex="-1"
                       to={`/customers/${id}/users`}
-                      className="btn btn-sm btn-link"
+                      className="m-2"
                     >
-                      User List
+                      <FaListUl />
                     </Link>
-                  </td>                  
-                  <td>
+                  </td>
+                  <td className="px-6 py-4">
                     <Link
                       tabIndex="-1"
                       to={`/customers/${id}/edit`}
-                      className="btn btn-sm btn-primary"
+                      className="m-2"
                     >
-                      <i className="bi bi-pencil-square"></i>
+                      <FaPencilAlt />
                     </Link>
                   </td>
                 </tr>

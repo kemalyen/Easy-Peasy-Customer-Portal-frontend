@@ -6,9 +6,10 @@ import Footer from './footer';
 const Layout = () => {
   return (
     <>
-      <div className="container">
+      <div>
         <Header />
-        <main>
+        <main role="main" className="
+        max-w-screen-xl items-center justify-between mx-auto p-4">
           <Outlet />
         </main>
         <Footer/>

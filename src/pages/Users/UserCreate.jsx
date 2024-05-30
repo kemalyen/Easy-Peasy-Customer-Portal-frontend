@@ -1,8 +1,8 @@
 import { createRequest } from '../../api/users';
 import { useMutation } from "@tanstack/react-query";
-import {useDocumentTitle} from '../../libs/setDocumentTitle'
+import { useDocumentTitle } from '../../libs/setDocumentTitle'
 import { useNavigate } from "react-router-dom";
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { UserForm } from '../../shared/UserForm';
 
 function UserCreate() {
@@ -27,11 +27,11 @@ function UserCreate() {
         await mutateAsync({ ...formData })
         notify(formData.name)
     }
- 
+
     return (
-        <div className="row">
-            <div className="mx-auto col-10 col-md-8 col-lg-6">
-                <h2>Create a new user</h2>
+        <div className="flex flex-col items-center h-screen">
+            <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+                <h2 className="text-2xl font-semibold mb-4">Create an user</h2>
                 <UserForm defaultValues={user} onFormSubmit={onFormSubmit} isLoading={isMutating} />
             </div>
         </div>
